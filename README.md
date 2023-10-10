@@ -14,7 +14,7 @@ DIRECTORIES:
 *This is a file in the root of the repository basically giving a brief description of what the repository contains.
 
             ******calculator.py******
-*This is a file containing pycodestyle compliant code.
+ *This is a file containing pycodestyle compliant code that does simple math calculations.
 
             ******console.py******
 *This is a file in the root of the repository that contains the code for commandline interpreter for the python project, basically a shell like interpreter used to manage the whole project during the development and during the mintenance of the code.
@@ -36,5 +36,7 @@ DIRECTORIES:
             ******ENGINE*****
 This is a directory that cotains file used to store the objests in the json format
 
-
+            ******tests******
+*This is a repository containing the test files.
+*This project uses the unittest module available in python
 
