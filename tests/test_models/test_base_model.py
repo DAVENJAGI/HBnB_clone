@@ -22,9 +22,9 @@ class TestBaseModel(unittest.TestCase):
         test_obj = BaseModel()
 
         previous_update = test_obj.updated_at
-        test_obj.save()
+        test_obj.storage.ssave()
 
-        new_update = test_obj.save()
+        new_update = test_obj.storage.save()
 
         self.assertGreater(new_update, previous_update)
 
