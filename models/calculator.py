@@ -28,7 +28,7 @@ try:
     a = float(input("Enter the first number: "))
     c = input("Enter operation to be made: ")
     b = float(input("Enter the second number: "))
-except EOFError:
+except  EOFError:
     print("EOF error detected!!! exiting program")
     exit()
 

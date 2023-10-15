@@ -1,5 +1,6 @@
+#!/usr/in/python3
 import unittest
-from calculator import Calculator 
+from models.calculator import Calculator 
 
 class TestClass(unittest.TestCase):
 
