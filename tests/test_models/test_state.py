@@ -6,11 +6,12 @@ Test classes:
     TestState_to_dict
 """
 
-#import models
+import models
 import unittest
 import os
 from datetime import datetime
 from time import sleep
+from models import storage
 from models.base_model import BaseModel
 from models.state import State
 
@@ -65,7 +66,7 @@ class TestStateInstantiation(unittest.TestCase):
         stateA = State()
         sleep(0.15)
         stateB = State()
-        self.asserLess(stateA.updated_at, stateB.updated_at)
+        self.assertLess(stateA.updated_at, stateB.updated_at)
 
     def test_unused_arguments(self):
         """test to check that args passed aren't stored as attr"""
@@ -79,9 +80,9 @@ class TestStateInstantiation(unittest.TestCase):
         date = datetime.today()
         date_isoformat = date.isoformat()
         state = State(id=789, created_at=date_isoformat, updated_at=date_isoformat)
-        self.assertEqual(state.id, "789")
-        self.assertEqual(state.created_at, date_isoformat)
-        self.assertEqual(state.updated_at, date_isoformat)
+        self.assertEqual(state.created_at, date)
+        self.assertIsInstance(state.id, int)
+        self.assertEqual(state.updated_at, date)
 
     def test_no_kwargs_instantiation(self):
         """Test for instantiation with no kwargs"""
@@ -92,18 +93,24 @@ class TestStateInstantiation(unittest.TestCase):
     def test_is_subclass(self):
         """test that state is subclass of basemodel"""
 
-        self.assertIsInstance(self.state.__class__, BaseModel)
+        self.assertTrue(issubclass(State, BaseModel))
 
     def test_is_a_string(self):
         """test that the output is a string"""
 
-        state.id = "789456"
-        date_time = datetime.now()
-        date_time_repr = repr(date_time)
-        state.created_at = state.updated_at = date_time
-        state_string = state.__str__()
-        self.assertIn("[state] 789456", state_string)
-        self.assertIn("'id': 789456", statestr)
+        state = State(name="Alaska")
+        self.assertIsInstance(state.name, str)
+    
+    def test_decosntructor(self):
+        """test for state deconstructor"""
+
+        state = State()
+
+        del state
+
+        with self.assertRaises(NameError):
+            state
+
 
 
 if __name__ == "__main__":

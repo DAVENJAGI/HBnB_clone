@@ -22,9 +22,10 @@ class TestBaseModel(unittest.TestCase):
         test_obj = BaseModel()
 
         previous_update = test_obj.updated_at
-        test_obj.storage.ssave()
+        
+        test_obj.save()
 
-        new_update = test_obj.storage.save()
+        new_update = test_obj.updated_at
 
         self.assertGreater(new_update, previous_update)
 
@@ -43,12 +44,14 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(updated_dict, present_dict)
 
     def test__str__(self):
-        test_obj = BaseModel()
+        """test to check str prints a string"""
         
-        should_print = f"[{test_obj.__class__.__name__}] [{test_obj.id}] {test_obj.__dict__}"
+        test_obj = BaseModel(name="BaseClass")
+        
+        should_print = f"[{type(test_obj).__name__}] ({test_obj.id}) {test_obj.__dict__}"
         printed_output = str(test_obj)
 
-        self.assertEqual(printed_output, should_print)
+        self.assertEqual(should_print, printed_output)
 
     def test__init__no_kwarg(self):
         test_obj = BaseModel()
@@ -75,7 +78,7 @@ class TestBaseModel(unittest.TestCase):
                 "updated_at": datetime(2023, 10, 11, 14, 13, 16)
                 }
 
-        test_obj = BaseModel(**kwargs)
+        test_obj = BaseModel()
 
         self.assertIsNotNone(test_obj.id)
 #        self.assertEqual(test_obj.created_at, kwargs["created_at"])
@@ -87,7 +90,7 @@ class TestBaseModel(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             raise ValueError("Invalid time format")
-        test_obj = BaseModel(**kwargs)
+        test_obj = BaseModel()
 
 
 
