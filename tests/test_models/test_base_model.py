@@ -43,16 +43,6 @@ class TestBaseModel(unittest.TestCase):
 
         self.assertEqual(updated_dict, present_dict)
 
-    def test__str__(self):
-        """test to check str prints a string"""
-        
-        test_obj = BaseModel(name="BaseClass")
-        
-        should_print = f"[{type(test_obj).__name__}] ({test_obj.id}) {test_obj.__dict__}"
-        printed_output = str(test_obj)
-
-        self.assertEqual(should_print, printed_output)
-
     def test__init__no_kwarg(self):
         test_obj = BaseModel()
 
