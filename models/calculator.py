@@ -24,10 +24,13 @@ class Calculator:
     def exponential(self):
         return (self.x ** self.y)
 
-
-a = float(input("Enter the first number: "))
-c = input("Enter operation to be made: ")
-b = float(input("Enter the second number: "))
+try:
+    a = float(input("Enter the first number: "))
+    c = input("Enter operation to be made: ")
+    b = float(input("Enter the second number: "))
+except EOFError:
+    print("EOF error detected!!! exiting program")
+    exit()
 
 calculator = Calculator(a, b)
 
