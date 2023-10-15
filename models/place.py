@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Contains the Place model"""
-from models.base_model import BaseModel
+from base_model import BaseModel
 
 
 class Place(BaseModel):
